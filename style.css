@@ -1,0 +1,17 @@
+body {
+  color: yellow;
+  background-color: black;
+}
+
+.center {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}
+
+#canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+  background: white;
+}
