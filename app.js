@@ -11,10 +11,10 @@ canvas.height = window.innerHeight;
 */
 
 const numStars = 500;
-const stars = [];
 const size = 1;
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
+const FULL_CIRCLE = 2 * Math.PI;
 
 const speed = 5;
 
@@ -36,7 +36,6 @@ class Star {
         const x = (this.x - centerX) * (canvas.width / this.z) + centerX;
         const y = (this.y - centerY) * (canvas.width / this.z) + centerY;
         const radius = size * (canvas.width / this.z);
-        const FULL_CIRCLE = 2 * Math.PI;
 
         ctx.beginPath();
         ctx.fillStyle = "white";
@@ -45,9 +44,8 @@ class Star {
     }
 }
 
-for (let i = 0; i < numStars; i++) {
-    stars.push(new Star());
-}
+
+const stars = Array(numStars).fill().map(() => new Star());
 
 const draw = () => {
     ctx.fillStyle = "black";
@@ -60,7 +58,7 @@ const draw = () => {
 
 const update = () => {
     draw();
-    window.requestAnimationFrame(update);
+    requestAnimationFrame(update);
 }
 
 update();
