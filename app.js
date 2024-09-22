@@ -18,23 +18,21 @@ const centerY = canvas.height / 2;
 
 const speed = 5;
 
-for (let i = 0; i < numStars; i++) {
-    stars[i] = new Star();
-}
+class Star {
+    constructor() {
+        this.x = Math.random() * canvas.width;  // x location
+        this.y = Math.random() * canvas.height; // y location
+        this.z = Math.random() * canvas.width;  // z location (depth of star)
+    }
 
-function Star() {
-    this.x = Math.random() * canvas.width;      // x location
-    this.y = Math.random() * canvas.height;     // y location
-    this.z = Math.random() * canvas.width;      // z location (depth of star)
-
-    this.move = function() {
-        this.z = this.z - speed;
+    move() {
+        this.z -= speed;
         if (this.z <= 0) {
             this.z = canvas.width;
         }
     }
 
-    this.show = function() {
+    show() {
         let x, y, s;
         x = (this.x - centerX) * (canvas.width / this.z);
         x = x + centerX;
@@ -49,6 +47,10 @@ function Star() {
         c.arc(x, y, s, 0, Math.PI * 2);
         c.fill();
     }
+}
+
+for (let i = 0; i < numStars; i++) {
+    stars[i] = new Star();
 }
 
 function draw() {
