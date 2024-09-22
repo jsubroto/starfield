@@ -1,5 +1,5 @@
 const canvas = document.getElementById("canvas");
-const c = canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 
 canvas.width = 1200;
 canvas.height = 700;
@@ -33,19 +33,15 @@ class Star {
     }
 
     show() {
-        let x, y, s;
-        x = (this.x - centerX) * (canvas.width / this.z);
-        x = x + centerX;
+        const x = (this.x - centerX) * (canvas.width / this.z) + centerX;
+        const y = (this.y - centerY) * (canvas.width / this.z) + centerY;
+        const radius = size * (canvas.width / this.z);
+        const FULL_CIRCLE = 2 * Math.PI;
 
-        y = (this.y - centerY) * (canvas.width / this.z);
-        y = y + centerY;
-
-        s = size * (canvas.width / this.z);
-
-        c.beginPath();
-        c.fillStyle = "white";
-        c.arc(x, y, s, 0, Math.PI * 2);
-        c.fill();
+        ctx.beginPath();
+        ctx.fillStyle = "white";
+        ctx.arc(x, y, radius, 0, FULL_CIRCLE);
+        ctx.fill();
     }
 }
 
@@ -54,12 +50,12 @@ for (let i = 0; i < numStars; i++) {
 }
 
 const draw = () => {
-    c.fillStyle = "black";
-    c.fillRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < numStars; i++) {
-        stars[i].show();
-        stars[i].move();
-    }
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(star => {
+        star.show();
+        star.move();
+    })
 }
 
 const update = () => {
