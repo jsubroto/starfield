@@ -50,10 +50,10 @@ class Star {
 }
 
 for (let i = 0; i < numStars; i++) {
-    stars[i] = new Star();
+    stars.push(new Star());
 }
 
-function draw() {
+const draw = () => {
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < numStars; i++) {
@@ -62,8 +62,9 @@ function draw() {
     }
 }
 
-function update() {
+const update = () => {
     draw();
     window.requestAnimationFrame(update);
 }
+
 update();
