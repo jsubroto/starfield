@@ -1,5 +1,5 @@
-var canvas = document.getElementById("canvas");
-var c = canvas.getContext("2d");
+const canvas = document.getElementById("canvas");
+const c = canvas.getContext("2d");
 
 canvas.width = 1200;
 canvas.height = 700;
@@ -10,15 +10,15 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 */
 
-var numStars = 500;
-var stars = [];
-var size = 1;
-var centerX = canvas.width / 2;
-var centerY = canvas.height / 2;
+const numStars = 500;
+const stars = [];
+const size = 1;
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
 
-var speed = 5;
+const speed = 5;
 
-for (var i = 0; i < numStars; i++) {
+for (let i = 0; i < numStars; i++) {
     stars[i] = new Star();
 }
 
@@ -35,7 +35,7 @@ function Star() {
     }
 
     this.show = function() {
-        var x, y, s;
+        let x, y, s;
         x = (this.x - centerX) * (canvas.width / this.z);
         x = x + centerX;
 
@@ -54,7 +54,7 @@ function Star() {
 function draw() {
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
-    for (var i = 0; i < numStars; i++) {
+    for (let i = 0; i < numStars; i++) {
         stars[i].show();
         stars[i].move();
     }
